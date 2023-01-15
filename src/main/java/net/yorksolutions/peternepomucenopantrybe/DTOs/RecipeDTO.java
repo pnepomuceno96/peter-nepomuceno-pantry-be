@@ -12,5 +12,6 @@ public class RecipeDTO {
     public Iterable<IngredientDTO> ingredients;
     public Iterable<String> steps;
     public Double totalWeight;
+    public Integer totalCalories;
     public Long userId;
 }

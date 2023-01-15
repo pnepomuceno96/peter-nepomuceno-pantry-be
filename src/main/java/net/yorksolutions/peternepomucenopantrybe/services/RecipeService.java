@@ -56,6 +56,14 @@ public class RecipeService {
             totalWeight += ingredient.getTotalWeight();
         }
         recipe.setTotalWeight(totalWeight);
+
+        Long totalCalories = 0L;
+        for (Ingredient ingredient: ingredients) {
+            totalCalories += ingredient.getTotalCalories();
+        }
+        recipe.setTotalCalories(totalCalories);
+
+
         Recipe savedRecipe = recipeRepo.save(recipe);
 
         appUser.getRecipes().add(savedRecipe);
@@ -79,7 +87,14 @@ public class RecipeService {
             totalWeight += ingredient.getTotalWeight();
         }
         recipe.setTotalWeight(totalWeight);
+
+        Long totalCalories = 0L;
+        for (Ingredient ingredient: ingredients) {
+            totalCalories += ingredient.getTotalCalories();
+        }
+        recipe.setTotalCalories(totalCalories);
         recipe.setIngredients(ingredients);
+        recipeRepo.save(recipe);
 
 
     }

@@ -1,5 +1,6 @@
 package net.yorksolutions.peternepomucenopantrybe.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -18,7 +19,8 @@ public class AppUser {
     private String password;
 
     @OneToMany
-    @Cascade(value = CascadeType.DETACH)
+    @JsonIgnoreProperties("user")
+    @Cascade(CascadeType.ALL)
     private Set<Recipe> recipes;
 
     public AppUser(Long id, String username, String password) {

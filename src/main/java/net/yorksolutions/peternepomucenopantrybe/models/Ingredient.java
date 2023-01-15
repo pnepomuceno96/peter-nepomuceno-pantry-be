@@ -1,6 +1,8 @@
 package net.yorksolutions.peternepomucenopantrybe.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Ingredient {
@@ -9,16 +11,20 @@ public class Ingredient {
     private Long id;
 
     @OneToOne
+    @Cascade(CascadeType.ALL)
     private Item item;
 
     private Long quantity;
     private Double totalWeight;
 
-    public Ingredient(Long id, Item item, Long quantity, Double totalWeight) {
+    private Long totalCalories;
+
+    public Ingredient(Long id, Item item, Long quantity, Double totalWeight, Long totalCalories) {
         this.id = id;
         this.item = item;
         this.quantity = quantity;
         this.totalWeight = totalWeight;
+        this.totalCalories = totalCalories;
     }
 
     public Ingredient() {
@@ -46,6 +52,14 @@ public class Ingredient {
 
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getTotalCalories() {
+        return totalCalories;
+    }
+
+    public void setTotalCalories(Long totalCalories) {
+        this.totalCalories = totalCalories;
     }
 
     public Double getTotalWeight() {

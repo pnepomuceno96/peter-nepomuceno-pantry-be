@@ -36,7 +36,8 @@ public class IngredientService {
 
             ingredient.setQuantity(ingredientDTO.quantity);
             ingredient.setTotalWeight(ingredientDTO.quantity * item.getWeight());
-
+            System.out.println("ingredient weight: " + ingredient.getTotalWeight());
+            ingredient.setTotalCalories(ingredientDTO.quantity * item.getCalories());
             ingredients.add(ingredient);
         }
         ingredientRepo.saveAll(ingredients);
@@ -63,6 +64,8 @@ public class IngredientService {
             Ingredient savedIngredient = ingredientRepo.save(ingredient);
             ingredients.add(savedIngredient);
         }
+        ingredientRepo.saveAll(ingredients);
         return ingredients;
+
     }
 }
