@@ -1,8 +1,6 @@
 package net.yorksolutions.peternepomucenopantrybe.models;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Ingredient {
@@ -10,8 +8,7 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne
-    @Cascade(CascadeType.ALL)
+    @OneToOne// (cascade = CascadeType.DETACH)
     private Item item;
 
     private Long quantity;

@@ -45,7 +45,7 @@ public class RecipeService {
         recipe.setName(recipeRequest.name);
         recipe.setDescription(recipeRequest.description);
         recipe.setImage(recipeRequest.image);
-        recipe.setUser(appUser);
+        //recipe.setUser(appUser);
         String steps = String.join("\n- ", recipeRequest.steps);
         recipe.setSteps(steps);
 
@@ -64,9 +64,9 @@ public class RecipeService {
         recipe.setTotalCalories(totalCalories);
 
 
-        Recipe savedRecipe = recipeRepo.save(recipe);
+        //Recipe savedRecipe = recipeRepo.save(recipe);
 
-        appUser.getRecipes().add(savedRecipe);
+        appUser.getRecipes().add(recipe);
         appUserRepo.save(appUser);
     }
 
@@ -99,11 +99,30 @@ public class RecipeService {
 
     }
 
-    public void deleteRecipeById(Long id) throws Exception {
-        Optional<Recipe> recipeOptional = recipeRepo.findById(id);
+    public void deleteRecipeById(Long userId, Long recipeId) throws Exception {
+        Optional<AppUser> appUserOptional = appUserRepo.findById(userId);
+        if (appUserOptional.isEmpty())
+            throw new Exception();
+
+        AppUser appUser = appUserOptional.get();
+
+        Optional<Recipe> recipeOptional = recipeRepo.findById(recipeId);
         if (recipeOptional.isEmpty())
             throw new Exception();
 
-        recipeRepo.deleteById(id);
+        Recipe recipeToDelete = null;
+        for (Recipe recipe: appUser.getRecipes())  {
+            if(recipe.getId() == recipeId) {
+                recipeToDelete = recipe;
+            }
+        }
+
+        if(recipeToDelete != null) {
+            appUser.getRecipes().remove(recipeToDelete);
+        }
+
+        appUserRepo.save(appUser);
+
+        //recipeRepo.deleteById(recipeId);
     }
 }

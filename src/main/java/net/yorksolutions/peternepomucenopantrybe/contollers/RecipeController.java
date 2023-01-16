@@ -47,10 +47,10 @@ public class RecipeController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteRecipeById(@PathVariable Long id) {
+    @DeleteMapping("/{userId}/{recipeId}")
+    public void deleteRecipeById(@PathVariable Long userId, @PathVariable Long recipeId) {
         try {
-            service.deleteRecipeById(id);
+            service.deleteRecipeById(userId, recipeId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

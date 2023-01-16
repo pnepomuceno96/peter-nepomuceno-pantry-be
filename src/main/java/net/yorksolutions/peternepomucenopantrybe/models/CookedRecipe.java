@@ -21,7 +21,6 @@ public class CookedRecipe {
     private Double weight;
 
 
-
     public CookedRecipe() {
     }
 

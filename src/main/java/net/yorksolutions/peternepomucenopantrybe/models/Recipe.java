@@ -2,10 +2,6 @@ package net.yorksolutions.peternepomucenopantrybe.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Set;
 
@@ -21,8 +17,7 @@ public class Recipe {
 
     private String image;
 
-    @OneToMany
-    @Cascade(CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Ingredient> ingredients;
     // MAKE SURE ITEM DOESNT GET DELETED WHEN YOU DELETE A RELATED RECIPE!!!
 
@@ -32,11 +27,11 @@ public class Recipe {
 
     private Long totalCalories;
 
-    @JsonIgnoreProperties("recipes")
+
     //@OnDelete(action = OnDeleteAction.CASCADE)
-    @Cascade(CascadeType.DETACH)
-    @OneToOne
-    private AppUser user;
+//    @JsonIgnoreProperties("recipes")
+//    @OneToOne(cascade = CascadeType.DETACH)
+//    private AppUser user;
 
     public Recipe(Long id, String name, String description, String image, String steps, Double totalWeight, Long totalCalories) {
         this.id = id;
@@ -115,11 +110,11 @@ public class Recipe {
         this.totalCalories = totalCalories;
     }
 
-    public AppUser getUser() {
-        return user;
-    }
-
-    public void setUser(AppUser user) {
-        this.user = user;
-    }
+//    public AppUser getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(AppUser user) {
+//        this.user = user;
+//    }
 }

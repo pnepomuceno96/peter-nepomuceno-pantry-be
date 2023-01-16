@@ -2,6 +2,7 @@ package net.yorksolutions.peternepomucenopantrybe.services;
 
 import net.yorksolutions.peternepomucenopantrybe.DTOs.IngredientDTO;
 import net.yorksolutions.peternepomucenopantrybe.DTOs.RecipeDTO;
+import net.yorksolutions.peternepomucenopantrybe.models.CookedRecipe;
 import net.yorksolutions.peternepomucenopantrybe.models.Ingredient;
 import net.yorksolutions.peternepomucenopantrybe.models.Item;
 import net.yorksolutions.peternepomucenopantrybe.repositories.IngredientRepo;
@@ -67,5 +68,13 @@ public class IngredientService {
         ingredientRepo.saveAll(ingredients);
         return ingredients;
 
+    }
+
+    public void deleteIngredientById(Long id) throws Exception{
+        Optional<Ingredient> ingredientOptional = ingredientRepo.findById(id);
+        if (ingredientOptional.isEmpty())
+            throw new Exception();
+
+        ingredientRepo.deleteById(id);
     }
 }
