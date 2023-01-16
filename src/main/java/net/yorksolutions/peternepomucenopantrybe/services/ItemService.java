@@ -1,18 +1,27 @@
 package net.yorksolutions.peternepomucenopantrybe.services;
 
+import net.yorksolutions.peternepomucenopantrybe.DTOs.IngredientDTO;
 import net.yorksolutions.peternepomucenopantrybe.DTOs.ItemDTO;
+import net.yorksolutions.peternepomucenopantrybe.DTOs.RecipeDTO;
+import net.yorksolutions.peternepomucenopantrybe.models.Ingredient;
 import net.yorksolutions.peternepomucenopantrybe.models.Item;
+import net.yorksolutions.peternepomucenopantrybe.models.Recipe;
 import net.yorksolutions.peternepomucenopantrybe.repositories.ItemRepo;
+import net.yorksolutions.peternepomucenopantrybe.repositories.RecipeRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ItemService {
     private final ItemRepo itemRepo;
+    private final RecipeRepo recipeRepo;
 
-    public ItemService(ItemRepo itemRepo) {
+    public ItemService(ItemRepo itemRepo, RecipeRepo recipeRepo) {
         this.itemRepo = itemRepo;
+        this.recipeRepo = recipeRepo;
     }
 
     public Iterable<Item> getAll() {return itemRepo.findAll();}
@@ -56,5 +65,24 @@ public class ItemService {
         item.setQuantity(itemRequest.quantity);
 
         itemRepo.save(item);
+    }
+
+    public void subtractItems(Recipe recipe) throws Exception {
+        Set<Item> itemsToUpdate = new HashSet<>();
+        for (Ingredient ingredient: recipe.getIngredients()) {
+            Optional<Item> itemOptional = itemRepo.findById(ingredient.getItemNo());
+            if(itemOptional.isEmpty())
+                throw new Exception();
+
+            Item item = itemOptional.get();
+
+            if(item.getQuantity() < ingredient.getQuantity())
+                throw new Exception();
+
+            Long newQuantity = item.getQuantity() - ingredient.getQuantity();
+            item.setQuantity(newQuantity);
+            itemsToUpdate.add(item);
+        }
+        itemRepo.saveAll(itemsToUpdate);
     }
 }

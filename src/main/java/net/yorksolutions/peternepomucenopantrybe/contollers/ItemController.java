@@ -1,7 +1,9 @@
 package net.yorksolutions.peternepomucenopantrybe.contollers;
 
 import net.yorksolutions.peternepomucenopantrybe.DTOs.ItemDTO;
+import net.yorksolutions.peternepomucenopantrybe.DTOs.RecipeDTO;
 import net.yorksolutions.peternepomucenopantrybe.models.Item;
+import net.yorksolutions.peternepomucenopantrybe.models.Recipe;
 import net.yorksolutions.peternepomucenopantrybe.services.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +46,15 @@ public class ItemController {
             service.updateItem(id, itemRequest);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping
+    public void subtractIngredients(@RequestBody Recipe recipe) {
+        try {
+            service.subtractItems(recipe);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
         }
     }
 
