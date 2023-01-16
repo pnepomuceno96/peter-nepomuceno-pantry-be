@@ -46,7 +46,7 @@ public class RecipeService {
         recipe.setDescription(recipeRequest.description);
         recipe.setImage(recipeRequest.image);
         //recipe.setUser(appUser);
-        String steps = String.join("\n- ", recipeRequest.steps);
+        String steps = String.join("\n| ", recipeRequest.steps);
         recipe.setSteps(steps);
 
         Set<Ingredient> ingredients = ingredientService.createIngredients(recipeRequest);
@@ -79,7 +79,7 @@ public class RecipeService {
         recipe.setName(recipeRequest.name);
         recipe.setDescription(recipeRequest.description);
         recipe.setImage(recipeRequest.image);
-        String steps = String.join("\n- ", recipeRequest.steps);
+        String steps = String.join("\n| ", recipeRequest.steps);
         recipe.setSteps(steps);
         Set<Ingredient> ingredients = ingredientService.updateIngredients(recipeRequest.ingredients);
         Double totalWeight = 0.0;
