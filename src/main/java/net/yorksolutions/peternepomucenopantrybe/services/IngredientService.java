@@ -33,7 +33,9 @@ public class IngredientService {
 
             Item item = itemOptional.get();
 
-            ingredient.setItem(item);
+            ingredient.setItemId(ingredientDTO.itemId);
+            ingredient.setName(item.getName());
+            ingredient.setMeasurement(item.getMeasurement());
 
             ingredient.setQuantity(ingredientDTO.quantity);
             ingredient.setTotalWeight(ingredientDTO.quantity * item.getWeight());
@@ -56,12 +58,13 @@ public class IngredientService {
 
             Item item = itemOptional.get();
 
-            ingredient.setItem(item);
-
+            ingredient.setItemId(ingredientRequest.itemId);
+            ingredient.setName(item.getName());
+            ingredient.setMeasurement(item.getMeasurement());
             //"How much of this ingredient do we need?"
             ingredient.setQuantity(ingredientRequest.quantity);
             ingredient.setTotalWeight(ingredientRequest.quantity * item.getWeight());
-
+            ingredient.setTotalCalories(ingredientRequest.quantity * item.getCalories());
             Ingredient savedIngredient = ingredientRepo.save(ingredient);
             ingredients.add(savedIngredient);
         }

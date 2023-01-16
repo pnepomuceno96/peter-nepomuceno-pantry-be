@@ -17,8 +17,12 @@ public class AppUserService {
 
     public Iterable<AppUser> getAll() { return appUserRepo.findAll(); }
 
-    public AppUser getUserByUsernameAndPassword(String username, String password) {
-        return appUserRepo.findAppUserByUsernameAndPassword(username, password).orElse(null);
+    public AppUser getUserByUsernameAndPassword(String username, String password) throws Exception {
+        Optional<AppUser> appUserOptional =  appUserRepo.findAppUserByUsernameAndPassword(username, password);
+        if(appUserOptional.isEmpty())
+            throw new Exception();
+
+        return appUserOptional.get();
     }
 
     public AppUser getUserById(Long id) {

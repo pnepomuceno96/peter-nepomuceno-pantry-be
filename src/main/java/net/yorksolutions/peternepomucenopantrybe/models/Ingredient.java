@@ -1,6 +1,7 @@
 package net.yorksolutions.peternepomucenopantrybe.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Ingredient {
@@ -8,17 +9,24 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne// (cascade = CascadeType.DETACH)
-    private Item item;
+//    @OneToOne// (cascade = CascadeType.DETACH)
+//    private Item item;
 
+
+    private Long itemNo;
+    private String name;
+
+    private String measurement;
     private Long quantity;
     private Double totalWeight;
 
     private Long totalCalories;
 
-    public Ingredient(Long id, Item item, Long quantity, Double totalWeight, Long totalCalories) {
+    public Ingredient(Long id, Long itemNo, String name, String measurement, Long quantity, Double totalWeight, Long totalCalories) {
         this.id = id;
-        this.item = item;
+        this.itemNo = itemNo;
+        this.name = name;
+        this.measurement = measurement;
         this.quantity = quantity;
         this.totalWeight = totalWeight;
         this.totalCalories = totalCalories;
@@ -35,12 +43,29 @@ public class Ingredient {
         this.id = id;
     }
 
-    public Item getItem() {
-        return item;
+
+    public Long getItemNo() {
+        return itemNo;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItemId(Long itemNo) {
+        this.itemNo = itemNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMeasurement() {
+        return measurement;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
     }
 
     public Long getQuantity() {
