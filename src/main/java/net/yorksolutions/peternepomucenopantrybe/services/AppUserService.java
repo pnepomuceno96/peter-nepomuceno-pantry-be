@@ -21,6 +21,10 @@ public class AppUserService {
         return appUserRepo.findAppUserByUsernameAndPassword(username, password).orElse(null);
     }
 
+    public AppUser getUserById(Long id) {
+        return appUserRepo.findById(id).orElse(null);
+    }
+
     public void createAppUser(AppUserDTO appUserRequest) throws Exception {
         Optional<AppUser> appUserOptional = appUserRepo.findAppUserByUsername(appUserRequest.username);
         if (appUserOptional.isPresent())

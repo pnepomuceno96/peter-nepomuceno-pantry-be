@@ -29,6 +29,15 @@ public class AppUserController {
         }
     }
 
+    @GetMapping("/{id}")
+    public AppUser getUserById(@PathVariable Long id) {
+        try {
+            return service.getUserById(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping
     public void createAppUser(@RequestBody AppUserDTO appUser) {
         try {
