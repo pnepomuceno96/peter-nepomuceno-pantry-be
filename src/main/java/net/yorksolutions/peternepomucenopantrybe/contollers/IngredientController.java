@@ -14,6 +14,7 @@ public class IngredientController {
         this.service = service;
     }
 
+    //Only needed controller/delete mapping to clean ingredient db of old orphan data
     @DeleteMapping("/{id}")
     public void deleteIngredientById(@PathVariable Long id) {
         try {

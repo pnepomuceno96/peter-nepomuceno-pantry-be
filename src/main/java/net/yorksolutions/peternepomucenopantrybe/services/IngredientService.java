@@ -27,19 +27,19 @@ public class IngredientService {
 
         for (IngredientDTO ingredientDTO: recipeRequest.ingredients) {
             Ingredient ingredient = new Ingredient();
-            Optional<Item> itemOptional = itemRepo.findById(ingredientDTO.itemId);
+            Optional<Item> itemOptional = itemRepo.findById(ingredientDTO.itemNo);
             if (itemOptional.isEmpty())
                 throw new Exception();
 
             Item item = itemOptional.get();
 
-            ingredient.setItemId(ingredientDTO.itemId);
+            ingredient.setItemId(ingredientDTO.itemNo);
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
 
             ingredient.setQuantity(ingredientDTO.quantity);
             ingredient.setTotalWeight(ingredientDTO.quantity * item.getWeight());
-            System.out.println("ingredient weight: " + ingredient.getTotalWeight());
+            System.out.println("ingredient Weight: " + ingredient.getTotalWeight());
             ingredient.setTotalCalories(ingredientDTO.quantity * item.getCalories());
             ingredients.add(ingredient);
         }
@@ -52,13 +52,13 @@ public class IngredientService {
         for (IngredientDTO ingredientRequest: ingredientRequests) {
             Ingredient ingredient = new Ingredient();
 
-            Optional<Item> itemOptional = itemRepo.findById(ingredientRequest.itemId);
+            Optional<Item> itemOptional = itemRepo.findById(ingredientRequest.itemNo);
             if (itemOptional.isEmpty())
                 throw new Exception();
 
             Item item = itemOptional.get();
 
-            ingredient.setItemId(ingredientRequest.itemId);
+            ingredient.setItemId(ingredientRequest.itemNo);
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
             //"How much of this ingredient do we need?"
