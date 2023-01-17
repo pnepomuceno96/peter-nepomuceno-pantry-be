@@ -48,8 +48,8 @@ public class CookedRecipeService {
         cookedRecipe.setName(cookedRecipeRequest.name);
         cookedRecipe.setImage(cookedRecipeRequest.image);
         cookedRecipe.setDescription(cookedRecipeRequest.description);
-        cookedRecipe.setCalories(cookedRecipeRequest.calories);
-        cookedRecipe.setWeight(cookedRecipeRequest.weight);
+//        cookedRecipe.setCalories(cookedRecipeRequest.calories);
+//        cookedRecipe.setWeight(cookedRecipeRequest.weight);
         cookedRecipeRepo.save(cookedRecipe);
     }
 }

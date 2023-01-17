@@ -23,4 +23,13 @@ public class IngredientController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping
+    public void deleteAll() {
+        try {
+            service.deleteAll();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
 }

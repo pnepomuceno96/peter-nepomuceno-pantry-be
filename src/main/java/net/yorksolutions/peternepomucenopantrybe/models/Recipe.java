@@ -17,7 +17,7 @@ public class Recipe {
 
     private String image;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Ingredient> ingredients;
     // MAKE SURE ITEM DOESNT GET DELETED WHEN YOU DELETE A RELATED RECIPE!!!
 

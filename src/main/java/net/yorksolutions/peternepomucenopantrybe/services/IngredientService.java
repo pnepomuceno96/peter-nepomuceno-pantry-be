@@ -22,6 +22,10 @@ public class IngredientService {
         this.itemRepo = itemRepo;
     }
 
+    public Iterable<Ingredient> getAll() {
+        return ingredientRepo.findAll();
+    }
+
     public Set<Ingredient> createIngredients(RecipeDTO recipeRequest) throws Exception{
         Set<Ingredient> ingredients = new HashSet<>();
 
@@ -79,5 +83,9 @@ public class IngredientService {
             throw new Exception();
 
         ingredientRepo.deleteById(id);
+    }
+
+    public void deleteAll() {
+        ingredientRepo.deleteAll(this.getAll());
     }
 }

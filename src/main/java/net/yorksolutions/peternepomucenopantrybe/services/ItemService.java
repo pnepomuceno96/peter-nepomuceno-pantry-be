@@ -60,6 +60,9 @@ public class ItemService {
         item.setName(itemRequest.name);
         item.setImage(itemRequest.image);
         item.setMeasurement(itemRequest.measurement);
+        if(itemRequest.weight == null || itemRequest.calories == null) {
+            throw new Exception();
+        }
         item.setWeight(itemRequest.weight);
         item.setCalories(itemRequest.calories);
         item.setQuantity(itemRequest.quantity);
