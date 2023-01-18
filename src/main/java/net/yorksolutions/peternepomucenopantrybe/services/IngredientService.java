@@ -9,9 +9,9 @@ import net.yorksolutions.peternepomucenopantrybe.repositories.IngredientRepo;
 import net.yorksolutions.peternepomucenopantrybe.repositories.ItemRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+
+
 
 @Service
 public class IngredientService {
@@ -26,6 +26,14 @@ public class IngredientService {
         return ingredientRepo.findAll();
     }
 
+    public Ingredient getIngredientById(Long id) {
+        return ingredientRepo.findById(id).orElse(null);
+    }
+//    public List<Ingredient> getAllAsList() {
+//
+//        return ingredientRepo.findAll();
+//    }
+
     public Set<Ingredient> createIngredients(RecipeDTO recipeRequest) throws Exception{
         Set<Ingredient> ingredients = new HashSet<>();
 
@@ -37,7 +45,7 @@ public class IngredientService {
 
             Item item = itemOptional.get();
 
-            ingredient.setItemId(ingredientDTO.itemNo);
+            ingredient.setItemNo(ingredientDTO.itemNo);
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
 
@@ -62,7 +70,7 @@ public class IngredientService {
 
             Item item = itemOptional.get();
 
-            ingredient.setItemId(ingredientRequest.itemNo);
+            ingredient.setItemNo(ingredientRequest.itemNo);
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
             //"How much of this ingredient do we need?"
@@ -72,6 +80,7 @@ public class IngredientService {
             Ingredient savedIngredient = ingredientRepo.save(ingredient);
             ingredients.add(savedIngredient);
         }
+
         ingredientRepo.saveAll(ingredients);
         return ingredients;
 
@@ -87,5 +96,10 @@ public class IngredientService {
 
     public void deleteAll() {
         ingredientRepo.deleteAll(this.getAll());
+    }
+
+    public void deleteIngredients(Iterable<Ingredient> ingredients) {
+        System.out.println("ingredients : "+ ingredients);
+        ingredientRepo.deleteAll(ingredients);
     }
 }

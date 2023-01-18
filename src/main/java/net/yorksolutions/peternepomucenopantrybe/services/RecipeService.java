@@ -11,6 +11,7 @@ import net.yorksolutions.peternepomucenopantrybe.repositories.IngredientRepo;
 import net.yorksolutions.peternepomucenopantrybe.repositories.RecipeRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
@@ -89,6 +90,9 @@ public class RecipeService {
             throw new Exception();
 
         recipe.setSteps(steps);
+
+        //Iterable<Ingredient> oldIngredients = recipe.getIngredients();
+
         Set<Ingredient> ingredients = ingredientService.updateIngredients(recipeRequest.ingredients);
         Double totalWeight = 0.0;
         for (Ingredient ingredient: ingredients) {
@@ -103,6 +107,13 @@ public class RecipeService {
         recipe.setTotalCalories(totalCalories);
         recipe.setIngredients(ingredients);
         recipeRepo.save(recipe);
+        //System.out.println(oldIngredients);
+
+
+//        for(Ingredient i: oldIngredients) {
+//            ingredientService.deleteIngredientById(i.getId());
+//        }
+
 
 
     }

@@ -48,7 +48,7 @@ public class Ingredient {
         return itemNo;
     }
 
-    public void setItemId(Long itemNo) {
+    public void setItemNo(Long itemNo) {
         this.itemNo = itemNo;
     }
 
