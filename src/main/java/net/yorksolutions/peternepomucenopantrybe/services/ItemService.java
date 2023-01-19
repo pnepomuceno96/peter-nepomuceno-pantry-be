@@ -73,7 +73,7 @@ public class ItemService {
     public void subtractItems(Recipe recipe) throws Exception {
         Set<Item> itemsToUpdate = new HashSet<>();
         for (Ingredient ingredient: recipe.getIngredients()) {
-            Optional<Item> itemOptional = itemRepo.findById(ingredient.getItemNo());
+            Optional<Item> itemOptional = itemRepo.findItemByName(ingredient.getName());
             if(itemOptional.isEmpty())
                 throw new Exception();
 

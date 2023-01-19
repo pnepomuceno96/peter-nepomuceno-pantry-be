@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class IngredientDTO {
     public Optional<Long> id;
-    public Long itemNo;
+    //public Long itemNo;
     public String name;
     public String measurement;
     public Long quantity;

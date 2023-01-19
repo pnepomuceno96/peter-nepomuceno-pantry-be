@@ -13,7 +13,9 @@ public class Ingredient {
 //    private Item item;
 
 
-    private Long itemNo;
+    //private Long itemNo;
+
+
     private String name;
 
     private String measurement;
@@ -24,7 +26,7 @@ public class Ingredient {
 
     public Ingredient(Long id, Long itemNo, String name, String measurement, Long quantity, Double totalWeight, Long totalCalories) {
         this.id = id;
-        this.itemNo = itemNo;
+        ///this.itemNo = itemNo;
         this.name = name;
         this.measurement = measurement;
         this.quantity = quantity;
@@ -44,13 +46,13 @@ public class Ingredient {
     }
 
 
-    public Long getItemNo() {
-        return itemNo;
-    }
+//    public Long getItemNo() {
+//        return itemNo;
+//    }
 
-    public void setItemNo(Long itemNo) {
-        this.itemNo = itemNo;
-    }
+//    public void setItemNo(Long itemNo) {
+//        this.itemNo = itemNo;
+//    }
 
     public String getName() {
         return name;

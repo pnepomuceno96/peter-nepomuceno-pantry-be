@@ -39,13 +39,13 @@ public class IngredientService {
 
         for (IngredientDTO ingredientDTO: recipeRequest.ingredients) {
             Ingredient ingredient = new Ingredient();
-            Optional<Item> itemOptional = itemRepo.findById(ingredientDTO.itemNo);
+            Optional<Item> itemOptional = itemRepo.findItemByName(ingredientDTO.name);
             if (itemOptional.isEmpty())
                 throw new Exception();
 
             Item item = itemOptional.get();
 
-            ingredient.setItemNo(ingredientDTO.itemNo);
+            //ingredient.setItemNo(ingredientDTO.itemNo);
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
 
@@ -64,13 +64,13 @@ public class IngredientService {
         for (IngredientDTO ingredientRequest: ingredientRequests) {
             Ingredient ingredient = new Ingredient();
 
-            Optional<Item> itemOptional = itemRepo.findById(ingredientRequest.itemNo);
+            Optional<Item> itemOptional = itemRepo.findItemByName(ingredientRequest.name);
             if (itemOptional.isEmpty())
                 throw new Exception();
 
             Item item = itemOptional.get();
 
-            ingredient.setItemNo(ingredientRequest.itemNo);
+            //ingredient.setItemNo(ingredientRequest.itemNo);
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
             //"How much of this ingredient do we need?"
