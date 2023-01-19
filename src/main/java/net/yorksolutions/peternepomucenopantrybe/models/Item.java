@@ -8,7 +8,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(unique = true)
+    //@Column(unique = true)
     private String name;
 
     private String image;

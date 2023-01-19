@@ -30,17 +30,21 @@ public class ItemService {
 
     public void createItem(ItemDTO itemRequest) throws Exception {
         Optional<Item> itemOptional = itemRepo.findItemByName(itemRequest.name);
-        if (itemOptional.isPresent())
-            throw new Exception();
+        if (itemOptional.isPresent()) {
+            //update item quantity if it already exists in pantry
+            itemRequest.quantity = itemRequest.quantity + itemOptional.get().getQuantity();
+            updateItem(itemOptional.get().getId(), itemRequest);
+        } else {
 
-        Item item = new Item();
-        item.setName(itemRequest.name);
-        item.setImage(itemRequest.image);
-        item.setMeasurement(itemRequest.measurement);
-        item.setCalories(itemRequest.calories);
-        item.setQuantity(itemRequest.quantity);
-        item.setWeight(itemRequest.weight);
-        itemRepo.save(item);
+            Item item = new Item();
+            item.setName(itemRequest.name);
+            item.setImage(itemRequest.image);
+            item.setMeasurement(itemRequest.measurement);
+            item.setCalories(itemRequest.calories);
+            item.setQuantity(itemRequest.quantity);
+            item.setWeight(itemRequest.weight);
+            itemRepo.save(item);
+        }
     }
 
     public void deleteItemById(Long id) throws Exception {
@@ -61,6 +65,7 @@ public class ItemService {
         item.setImage(itemRequest.image);
         item.setMeasurement(itemRequest.measurement);
         if(itemRequest.weight == null || itemRequest.calories == null) {
+            System.out.println("Calories or weight is null");
             throw new Exception();
         }
         item.setWeight(itemRequest.weight);
