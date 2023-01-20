@@ -25,7 +25,7 @@ public class Recipe {
 
     private Double totalWeight;
 
-    private Long totalCalories;
+    private Double totalCalories;
 
 
     //@OnDelete(action = OnDeleteAction.CASCADE)
@@ -33,7 +33,7 @@ public class Recipe {
 //    @OneToOne(cascade = CascadeType.DETACH)
 //    private AppUser user;
 
-    public Recipe(Long id, String name, String description, String image, String steps, Double totalWeight, Long totalCalories) {
+    public Recipe(Long id, String name, String description, String image, String steps, Double totalWeight, Double totalCalories) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -102,11 +102,11 @@ public class Recipe {
         this.totalWeight = totalWeight;
     }
 
-    public Long getTotalCalories() {
+    public Double getTotalCalories() {
         return totalCalories;
     }
 
-    public void setTotalCalories(Long totalCalories) {
+    public void setTotalCalories(Double totalCalories) {
         this.totalCalories = totalCalories;
     }
 

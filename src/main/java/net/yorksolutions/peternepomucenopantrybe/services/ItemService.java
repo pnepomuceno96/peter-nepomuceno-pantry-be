@@ -87,7 +87,7 @@ public class ItemService {
             if(item.getQuantity() < ingredient.getQuantity())
                 throw new Exception();
 
-            Long newQuantity = item.getQuantity() - ingredient.getQuantity();
+            Double newQuantity = item.getQuantity() - ingredient.getQuantity();
             item.setQuantity(newQuantity);
             itemsToUpdate.add(item);
         }

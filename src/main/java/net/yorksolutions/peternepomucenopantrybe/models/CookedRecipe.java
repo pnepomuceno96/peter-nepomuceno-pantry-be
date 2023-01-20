@@ -16,7 +16,7 @@ public class CookedRecipe {
 
     private String description;
 
-    private Long calories;
+    private Double calories;
 
     private Double weight;
 
@@ -24,7 +24,7 @@ public class CookedRecipe {
     public CookedRecipe() {
     }
 
-    public CookedRecipe(Long id, String name, String image, String description, Long calories, Double weight) {
+    public CookedRecipe(Long id, String name, String image, String description, Double calories, Double weight) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -66,11 +66,11 @@ public class CookedRecipe {
         this.description = description;
     }
 
-    public Long getCalories() {
+    public Double getCalories() {
         return calories;
     }
 
-    public void setCalories(Long calories) {
+    public void setCalories(Double calories) {
         this.calories = calories;
     }
 

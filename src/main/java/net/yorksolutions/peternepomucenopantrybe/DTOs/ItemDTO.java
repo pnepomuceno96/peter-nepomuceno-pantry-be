@@ -8,6 +8,6 @@ public class ItemDTO {
     public String image;
     public String measurement;
     public Double weight;
-    public Long calories;
-    public Long quantity;
+    public Double calories;
+    public Double quantity;
 }

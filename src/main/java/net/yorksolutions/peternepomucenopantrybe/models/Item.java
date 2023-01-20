@@ -19,11 +19,11 @@ public class Item {
 
     private Double weight;
 
-    private Long calories;
+    private Double calories;
 
-    private Long quantity;
+    private Double quantity;
 
-    public Item(Long id, String name, String image, String measurement, Double weight, Long calories, Long quantity) {
+    public Item(Long id, String name, String image, String measurement, Double weight, Double calories, Double quantity) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -76,19 +76,19 @@ public class Item {
         this.weight = weight;
     }
 
-    public Long getCalories() {
+    public Double getCalories() {
         return calories;
     }
 
-    public void setCalories(Long calories) {
+    public void setCalories(Double calories) {
         this.calories = calories;
     }
 
-    public Long getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 }

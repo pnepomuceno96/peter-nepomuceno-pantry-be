@@ -7,6 +7,6 @@ public class CookedRecipeDTO {
     public String name;
     public String image;
     public String description;
-    public Long calories;
+    public Double calories;
     public Double weight;
 }

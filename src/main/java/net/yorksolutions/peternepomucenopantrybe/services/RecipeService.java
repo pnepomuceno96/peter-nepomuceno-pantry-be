@@ -63,7 +63,7 @@ public class RecipeService {
         }
         recipe.setTotalWeight(totalWeight);
 
-        Long totalCalories = 0L;
+        Double totalCalories = 0.0;
         for (Ingredient ingredient: ingredients) {
             totalCalories += ingredient.getTotalCalories();
         }
@@ -100,7 +100,7 @@ public class RecipeService {
         }
         recipe.setTotalWeight(totalWeight);
 
-        Long totalCalories = 0L;
+        Double totalCalories = 0.0;
         for (Ingredient ingredient: ingredients) {
             totalCalories += ingredient.getTotalCalories();
         }

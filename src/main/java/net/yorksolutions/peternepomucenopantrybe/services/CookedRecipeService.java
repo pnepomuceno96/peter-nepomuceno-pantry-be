@@ -20,7 +20,7 @@ public class CookedRecipeService {
 
     public Iterable<CookedRecipe> getAll() { return cookedRecipeRepo.findAll();}
 
-    public void createCookedRecipe(CookedRecipeDTO cookedRecipeRequest) throws Exception {
+    public void createCookedRecipe(CookedRecipeDTO cookedRecipeRequest) {
         CookedRecipe cookedRecipe = new CookedRecipe();
         cookedRecipe.setName(cookedRecipeRequest.name);
         cookedRecipe.setImage(cookedRecipeRequest.image);

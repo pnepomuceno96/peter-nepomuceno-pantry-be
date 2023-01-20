@@ -7,5 +7,5 @@ public class IngredientDTO {
     //public Long itemNo;
     public String name;
     public String measurement;
-    public Long quantity;
+    public Double quantity;
 }
