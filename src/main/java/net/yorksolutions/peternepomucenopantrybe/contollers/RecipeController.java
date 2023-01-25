@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/recipes")
 @CrossOrigin
@@ -48,7 +50,7 @@ public class RecipeController {
     }
 
     @DeleteMapping("/{userId}/{recipeId}")
-    public void deleteRecipeById(@PathVariable Long userId, @PathVariable Long recipeId) {
+    public void deleteRecipeById(@PathVariable UUID userId, @PathVariable Long recipeId) {
         try {
             service.deleteRecipeById(userId, recipeId);
         } catch (Exception e) {

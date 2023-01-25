@@ -3,6 +3,7 @@ package net.yorksolutions.peternepomucenopantrybe.DTOs;
 import net.yorksolutions.peternepomucenopantrybe.models.Item;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public class RecipeDTO {
     public Optional<Long> id;
@@ -13,5 +14,5 @@ public class RecipeDTO {
     public Iterable<String> steps;
 //    public Double totalWeight;
 //    public Integer totalCalories;
-    public Long userId;
+    public UUID userId;
 }

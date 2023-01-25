@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class  AppUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
     @Column(unique = true)
     private String username;
@@ -20,8 +21,8 @@ public class  AppUser {
     @JsonIgnoreProperties("user")
     private Set<Recipe> recipes;
 
-    public AppUser(Long id, String username, String password) {
-        this.id = id;
+    public AppUser(String username, String password) {
+        //this.id = id;
         this.username = username;
         this.password = password;
     }
@@ -29,11 +30,11 @@ public class  AppUser {
     public AppUser() {
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
