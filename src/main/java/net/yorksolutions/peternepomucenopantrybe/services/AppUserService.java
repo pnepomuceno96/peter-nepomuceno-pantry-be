@@ -3,13 +3,17 @@ package net.yorksolutions.peternepomucenopantrybe.services;
 import net.yorksolutions.peternepomucenopantrybe.DTOs.AppUserDTO;
 import net.yorksolutions.peternepomucenopantrybe.models.AppUser;
 import net.yorksolutions.peternepomucenopantrybe.repositories.AppUserRepo;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AppUserService {
     private final AppUserRepo appUserRepo;
+
 
     public AppUserService(AppUserRepo appUserRepo) {
         this.appUserRepo = appUserRepo;
@@ -25,7 +29,15 @@ public class AppUserService {
         return appUserOptional.get();
     }
 
-    public AppUser getUserById(Long id) {
+    public AppUser getUserByUsername(String username) throws Exception {
+        Optional<AppUser> appUserOptional = appUserRepo.findAppUserByUsername(username);
+        if(appUserOptional.isEmpty())
+            throw new Exception();
+
+        return appUserOptional.get();
+    }
+
+    public AppUser getUserById(UUID id) {
         return appUserRepo.findById(id).orElse(null);
     }
 
@@ -40,7 +52,7 @@ public class AppUserService {
         appUserRepo.save(appUser);
     }
 
-    public void deleteAppUserById(Long id) throws Exception {
+    public void deleteAppUserById(UUID id) throws Exception {
         Optional<AppUser> appUserOptional = appUserRepo.findById(id);
         if (appUserOptional.isEmpty())
             throw new Exception();
@@ -48,7 +60,7 @@ public class AppUserService {
         appUserRepo.deleteById(id);
     }
 
-    public void updateAppUser(Long id, AppUserDTO appUserRequest) throws Exception {
+    public void updateAppUser(UUID id, AppUserDTO appUserRequest) throws Exception {
         Optional<AppUser> appUserOptional = appUserRepo.findById(id);
         if (appUserOptional.isEmpty())
             throw new Exception();

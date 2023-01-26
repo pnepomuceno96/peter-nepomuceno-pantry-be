@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class RecipeService {
@@ -118,7 +119,7 @@ public class RecipeService {
 
     }
 
-    public void deleteRecipeById(Long userId, Long recipeId) throws Exception {
+    public void deleteRecipeById(UUID userId, Long recipeId) throws Exception {
         Optional<AppUser> appUserOptional = appUserRepo.findById(userId);
         if (appUserOptional.isEmpty())
             throw new Exception();
