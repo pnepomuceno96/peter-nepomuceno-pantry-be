@@ -70,6 +70,9 @@ public class ItemService {
         }
         item.setWeight(itemRequest.weight);
         item.setCalories(itemRequest.calories);
+        if(itemRequest.quantity < 0) {
+            throw new Exception();
+        }
         item.setQuantity(itemRequest.quantity);
 
         itemRepo.save(item);
