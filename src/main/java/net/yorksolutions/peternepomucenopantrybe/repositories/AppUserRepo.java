@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface AppUserRepo extends CrudRepository<AppUser, UUID> {
+    //abstract class that inherits from CrudRepository
     Optional<AppUser> findAppUserByUsernameAndPassword(String username, String password);
     Optional<AppUser> findAppUserByUsername(String username);
 }
