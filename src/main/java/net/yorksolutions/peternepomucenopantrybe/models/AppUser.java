@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class  AppUser {
+public class AppUser {
     @Id
     @GeneratedValue
     private UUID id;
@@ -20,6 +20,7 @@ public class  AppUser {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("user")
     private Set<Recipe> recipes;
+    //A collection where each element is unique.
 
     public AppUser(String username, String password) {
         //this.id = id;
