@@ -62,13 +62,13 @@ public class RecipeService {
         for (Ingredient ingredient: ingredients) {
             totalWeight += ingredient.getTotalWeight();
         }
-        recipe.setTotalWeight(totalWeight);
+        recipe.setTotalWeight((double) Math.round(totalWeight * 100) /100);
 
         Double totalCalories = 0.0;
         for (Ingredient ingredient: ingredients) {
             totalCalories += ingredient.getTotalCalories();
         }
-        recipe.setTotalCalories(totalCalories);
+        recipe.setTotalCalories((double) Math.round(totalCalories * 100) /100);
 
 
         //Recipe savedRecipe = recipeRepo.save(recipe);
@@ -99,13 +99,13 @@ public class RecipeService {
         for (Ingredient ingredient: ingredients) {
             totalWeight += ingredient.getTotalWeight();
         }
-        recipe.setTotalWeight(totalWeight);
+        recipe.setTotalWeight((double) Math.round(totalWeight * 100) /100);
 
         Double totalCalories = 0.0;
         for (Ingredient ingredient: ingredients) {
             totalCalories += ingredient.getTotalCalories();
         }
-        recipe.setTotalCalories(totalCalories);
+        recipe.setTotalCalories((double) Math.round(totalCalories * 100) /100);
         recipe.setIngredients(ingredients);
         recipeRepo.save(recipe);
         //System.out.println(oldIngredients);

@@ -49,10 +49,9 @@ public class IngredientService {
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
 
-            ingredient.setQuantity(ingredientDTO.quantity);
-            ingredient.setTotalWeight(ingredientDTO.quantity * item.getWeight());
-            System.out.println("ingredient Weight: " + ingredient.getTotalWeight());
-            ingredient.setTotalCalories(ingredientDTO.quantity * item.getCalories());
+            ingredient.setQuantity((double) Math.round(ingredientDTO.quantity * 100)/100);
+            ingredient.setTotalWeight((double) Math.round((ingredientDTO.quantity * item.getWeight())* 100)/100);
+            ingredient.setTotalCalories((double) Math.round((ingredientDTO.quantity * item.getCalories())*100)/100);
             ingredients.add(ingredient);
         }
         ingredientRepo.saveAll(ingredients);
@@ -74,9 +73,9 @@ public class IngredientService {
             ingredient.setName(item.getName());
             ingredient.setMeasurement(item.getMeasurement());
             //"How much of this ingredient do we need?"
-            ingredient.setQuantity(ingredientRequest.quantity);
-            ingredient.setTotalWeight(ingredientRequest.quantity * item.getWeight());
-            ingredient.setTotalCalories(ingredientRequest.quantity * item.getCalories());
+            ingredient.setQuantity((double) Math.round(ingredientRequest.quantity * 100)/100);
+            ingredient.setTotalWeight((double) Math.round((ingredientRequest.quantity * item.getWeight()) * 100) /100);
+            ingredient.setTotalCalories((double) Math.round((ingredientRequest.quantity * item.getCalories()) * 100)/ 100);
             Ingredient savedIngredient = ingredientRepo.save(ingredient);
             ingredients.add(savedIngredient);
         }

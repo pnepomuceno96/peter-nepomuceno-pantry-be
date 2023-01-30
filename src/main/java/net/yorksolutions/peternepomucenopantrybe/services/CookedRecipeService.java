@@ -25,8 +25,8 @@ public class CookedRecipeService {
         cookedRecipe.setName(cookedRecipeRequest.name);
         cookedRecipe.setImage(cookedRecipeRequest.image);
         cookedRecipe.setDescription(cookedRecipeRequest.description);
-        cookedRecipe.setCalories(cookedRecipeRequest.calories);
-        cookedRecipe.setWeight(cookedRecipeRequest.weight);
+        cookedRecipe.setCalories((double) Math.round(cookedRecipeRequest.calories * 100) /100);
+        cookedRecipe.setWeight((double) Math.round(cookedRecipeRequest.weight * 100) /100);
 
         cookedRecipeRepo.save(cookedRecipe);
     }

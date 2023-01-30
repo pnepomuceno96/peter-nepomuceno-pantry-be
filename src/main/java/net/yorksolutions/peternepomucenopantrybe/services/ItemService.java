@@ -40,9 +40,9 @@ public class ItemService {
             item.setName(itemRequest.name);
             item.setImage(itemRequest.image);
             item.setMeasurement(itemRequest.measurement);
-            item.setCalories(itemRequest.calories);
-            item.setQuantity(itemRequest.quantity);
-            item.setWeight(itemRequest.weight);
+            item.setCalories((double) Math.round(itemRequest.calories *100)/100);
+            item.setQuantity((double) Math.round(itemRequest.quantity *100)/100);
+            item.setWeight((double) Math.round(itemRequest.weight *100)/100);
             itemRepo.save(item);
         }
     }
@@ -68,12 +68,12 @@ public class ItemService {
             System.out.println("Calories or weight is null");
             throw new Exception();
         }
-        item.setWeight(itemRequest.weight);
-        item.setCalories(itemRequest.calories);
+        item.setWeight((double) Math.round(itemRequest.weight * 100)/ 100);
+        item.setCalories((double) Math.round(itemRequest.calories * 100)/ 100);
         if(itemRequest.quantity < 0) {
             throw new Exception();
         }
-        item.setQuantity(itemRequest.quantity);
+        item.setQuantity((double) Math.round(itemRequest.quantity * 100)/ 100);
 
         itemRepo.save(item);
     }
@@ -91,7 +91,7 @@ public class ItemService {
                 throw new Exception();
 
             Double newQuantity = item.getQuantity() - ingredient.getQuantity();
-            item.setQuantity(newQuantity);
+            item.setQuantity((double) Math.round(newQuantity * 100)/ 100);
             itemsToUpdate.add(item);
         }
         itemRepo.saveAll(itemsToUpdate);
