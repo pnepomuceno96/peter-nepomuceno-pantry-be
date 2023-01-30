@@ -4,11 +4,15 @@ import net.yorksolutions.peternepomucenopantrybe.DTOs.AppUserDTO;
 import net.yorksolutions.peternepomucenopantrybe.models.AppUser;
 import net.yorksolutions.peternepomucenopantrybe.repositories.AppUserRepo;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class AppUserService {
@@ -66,6 +70,14 @@ public class AppUserService {
             throw new Exception();
 
         AppUser appUser = appUserOptional.get();
+        Pattern pattern = Pattern.compile("^[\\w.@-]*$");
+        Matcher matcher = pattern.matcher(appUserRequest.username);
+        boolean validUsername = matcher.find();
+        if(!validUsername) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE);
+        }
+
+
         appUser.setUsername(appUserRequest.username);
         appUser.setPassword(appUserRequest.password);
 
