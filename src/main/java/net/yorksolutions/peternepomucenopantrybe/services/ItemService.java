@@ -73,9 +73,15 @@ public class ItemService {
         if(itemRequest.quantity < 0) {
             throw new Exception();
         }
-        item.setQuantity((double) Math.round(itemRequest.quantity * 100)/ 100);
 
-        itemRepo.save(item);
+        if(itemRequest.quantity == 0) {
+            itemRepo.deleteById(item.getId());
+        } else {
+
+            item.setQuantity((double) Math.round(itemRequest.quantity * 100) / 100);
+
+            itemRepo.save(item);
+        }
     }
 
     public void subtractItems(Recipe recipe) throws Exception {
@@ -91,8 +97,14 @@ public class ItemService {
                 throw new Exception();
 
             Double newQuantity = item.getQuantity() - ingredient.getQuantity();
-            item.setQuantity((double) Math.round(newQuantity * 100)/ 100);
-            itemsToUpdate.add(item);
+
+            if (newQuantity == 0) {
+                itemRepo.deleteById(item.getId());
+            }else {
+
+                item.setQuantity((double) Math.round(newQuantity * 100) / 100);
+                itemsToUpdate.add(item);
+            }
         }
         itemRepo.saveAll(itemsToUpdate);
     }
